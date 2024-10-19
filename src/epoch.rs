@@ -3,7 +3,7 @@
 use core::{
     cell::Cell,
     fmt::{self, Debug},
-    sync::atomic::{AtomicU64, Ordering},
+    sync::atomic::{AtomicUsize, Ordering},
 };
 
 /// Monotonically incremented epoch counter.
@@ -13,14 +13,14 @@ use core::{
 /// Before this inevitable event happens, update to new version of this library with 128 bit counter is required.
 /// Which shall be released before year 14000 to give at least 29 years for migration.
 pub struct EpochCounter {
-    value: AtomicU64,
+    value: AtomicUsize,
 }
 
 impl EpochCounter {
     /// Returns new epoch counter.
     pub const fn new() -> Self {
         EpochCounter {
-            value: AtomicU64::new(0),
+            value: AtomicUsize::new(0),
         }
     }
 

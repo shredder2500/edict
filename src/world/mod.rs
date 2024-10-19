@@ -21,7 +21,7 @@ use core::{
     fmt::{self, Debug},
     marker::PhantomData,
     ops::{Deref, DerefMut},
-    sync::atomic::{AtomicU64, Ordering},
+    sync::atomic::{AtomicUsize, Ordering},
 };
 
 use crate::{
@@ -56,7 +56,7 @@ mod view;
 /// `World` keeps same id until archetype set changes.
 ///
 /// This value starts with 1 because 0 is reserved for empty set.
-static NEXT_ARCHETYPE_SET_ID: AtomicU64 = AtomicU64::new(1);
+static NEXT_ARCHETYPE_SET_ID: AtomicUsize = AtomicUsize::new(1);
 
 struct ArchetypeSet {
     /// Unique archetype set id.

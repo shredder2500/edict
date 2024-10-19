@@ -1,7 +1,7 @@
 use alloc::boxed::Box;
 use core::{
     fmt,
-    sync::atomic::{AtomicU64, Ordering},
+    sync::atomic::{AtomicUsize, Ordering},
 };
 
 use hashbrown::{hash_map::Entry, HashMap};
@@ -53,7 +53,7 @@ impl Location {
 pub struct EntitySet {
     map: HashMap<u64, Location>,
     id_allocator: IdAllocator,
-    reserve_counter: AtomicU64,
+    reserve_counter: AtomicUsize,
 }
 
 impl fmt::Debug for EntitySet {
@@ -70,7 +70,7 @@ impl EntitySet {
         EntitySet {
             map: HashMap::new(),
             id_allocator: IdAllocator::new(),
-            reserve_counter: AtomicU64::new(0),
+            reserve_counter: AtomicUsize::new(0),
         }
     }
 
@@ -82,7 +82,7 @@ impl EntitySet {
         EntitySet {
             map: HashMap::new(),
             id_allocator: IdAllocator::with_range_allocator(id_allocator),
-            reserve_counter: AtomicU64::new(0),
+            reserve_counter: AtomicUsize::new(0),
         }
     }
 
